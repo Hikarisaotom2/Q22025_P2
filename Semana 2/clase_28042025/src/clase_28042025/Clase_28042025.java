@@ -25,8 +25,11 @@ public class Clase_28042025 {
         boolean x;
         
         Persona p = new Persona("Claudia", 90) ;
+        
+        Persona madreSoltera= new Persona("Claudia", "Claudia Cortes") ;
+        
 
-         
+       
         /*
         
         Clase: 

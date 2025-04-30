@@ -4,21 +4,157 @@ public class Persona {
     //atributos  
     private String nombre;
     private int edad;
+    private String nombrePadre;
+    private String nombreMadre;
+    
+
+    public Persona(String nombre, String nombrePadre) {
+        this.nombre = nombre;
+        this.nombrePadre = nombrePadre;
+    }
+
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    public Persona(String nombre, int edad, String nombrePadre, String nombreMadre) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.nombrePadre = nombrePadre;
+        this.nombreMadre = nombreMadre;
+    }
+    
+    
+    //Mutadores
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getEdad() {
+        return edad;
+    }
+
+    public void setEdad(int edad) {
+        this.edad = edad;
+    }
+
+    public String getNombrePadre() {
+        return nombrePadre;
+    }
+
+    public void setNombrePadre(String nombrePadre) {
+        this.nombrePadre = nombrePadre;
+    }
+
+    public String getNombreMadre() {
+        return nombreMadre;
+    }
+
+    public void setNombreMadre(String nombreMadre) {
+        this.nombreMadre = nombreMadre;
+    }
     
     
     
-    //metodos
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+   
+    
+    //metodo
+    //sobrecarga: el hecho de tener 2 o mas metodos con el mismo nombre. 
+        // -> Podemos sobrecargar metodos , diferenciandolos con los parametros. 
+        // -> cantidad y en orden 
+    
+    /*
+    
+    nombre             """""apellidos """"""
+    calcularArea .        N/A
+    calcularArea         int
+    calcularArea         string
+    calcularArea         int, string 
+    calcularArea         string, int
+    
+    */
+    
+    
+    
+    /*
+    1) especiales 
+        -> nombre, DNI, presentar documentacion especial, .....
+    2) normales 
+        -> nombre, DNI, Titulo secundario, informacion....
+    */
+    
+    /*
+    caso 1: 
+    Matricular()
+     if(){
+        matricula especial();
+    else 
+    matriculaNormal();
+    
+    );
+    
+    caso 2: 
+    matricula especial();
+    matriculaNormal()
+    
+    caso 3: 
+    Matricula(nombre, DNI, presentar documentacion especial);
+    Matricula(nombre, DNI, Titulo secundario, informacion);
+    */
+    
+    
+    public void calcularArea(){
+        
+    }
+    
+    
+    public double calcularArea(int edad,  double valor){
+        return 9.0;
+        
+    }
+      
+    
+     public void calcularArea(String valor, int edad){
+        
+    }
+    
+     
+    public void calcularArea(int edad, String valor){
+        
+    }
     
     //constructor
     // siempre debe tener el nombre de la clase 
     //  omitir el uso de las palabras reservadas, static, retorno, void 
     
-    Persona(String nuevoNombre, int nuevaEdad){
-        nombre = nuevoNombre;
-        edad = nuevaEdad;
-    }
-    
+//    Persona(String nombre, int edad){
+//        this.nombre = nombre;
+//        this.edad = edad;
+//        // guardar en na base de datos datos eseciales.....
+//  
+//    }
+//    
+//      Persona(String nombre, String nombreMadre){
+//        this.nombre = nombre;
+//        this.nombreMadre = nombreMadre;
+//        ///guardar datos estadisticos de madres soltera 
+//        
+//    }
     
     // mutadores
     /*

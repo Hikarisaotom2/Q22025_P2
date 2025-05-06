@@ -4,6 +4,7 @@
  */
 package clase_28042025;
 
+
 /**
  *
  * @author claudiacortes
@@ -19,16 +20,26 @@ public class Clase_28042025 {
         tipo de dato nombre  = valor inicial;
         */
         
-        int numero;
-        boolean bandera = true;
-        int numero2 = 4;
-        boolean x;
-        
+        //VARIABLE POR REFERENCIA
         Persona p = new Persona("Claudia", 90) ;
+        Persona copia = p;
+     
+        copia.setNombre("Juan");
         
-        Persona madreSoltera= new Persona("Claudia", "Claudia Cortes") ;
+        System.out.println(p.getNombre());
+        System.out.println(copia.getNombre());
+       
         
-
+        //COPIA POR VALOR 
+        int valor1 = 5;
+        int valor2 = valor1;
+        valor2+=5;
+        
+        System.out.println(valor1);
+        System.out.println(valor2);
+        //claudia
+        //juan 
+        
        
         /*
         
@@ -41,6 +52,7 @@ public class Clase_28042025 {
         
         Planos y en las casas. 
         */
+        
         
         
     }

@@ -31,10 +31,6 @@ public class Alumno {
         return cuenta;
     }
 
-    public void setCuenta(int cuenta) {
-        this.cuenta = cuenta;
-    }
-
     public int getInasistencias() {
         return inasistencias;
     }

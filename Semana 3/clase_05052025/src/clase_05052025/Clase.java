@@ -11,10 +11,11 @@ import java.util.ArrayList;
  * @author claudiacortes
  */
 public class Clase {
- private String nombre;
- private String seccion;
- // Alumnos
- private ArrayList<Alumno> alumnos;
+
+    private String nombre;
+    private String seccion;
+    // Alumnos
+    private ArrayList<Alumno> alumnos;
 
     public Clase(String nombre, String seccion) {
         this.nombre = nombre;
@@ -42,21 +43,25 @@ public class Clase {
         return alumnos;
     }
 
-    public void matricularAlumno(Alumno nuevoAlumno){
+    public void matricularAlumno(Alumno nuevoAlumno) {
         this.alumnos.add(nuevoAlumno);
-        
-    } 
+
+    }
 
     @Override
     public String toString() {
-        String alumnos = "\n";
-        for (int i = 0; i < this.alumnos.size(); i++) {
-            alumnos+= this.alumnos.get(i).toString()+"\n";
-           
+        String alumnos = " \n";
+        if (this.alumnos.size() <= 0) {
+            alumnos += "CLASE VACIA";
+        } else {
+            alumnos += "Estudiantes matriculados: \n";
+            for (int i = 0; i < this.alumnos.size(); i++) {
+                alumnos += this.alumnos.get(i).toString() + "\n";
+
+            }
         }
-        
-        return  seccion + nombre + alumnos ;
+
+        return seccion + nombre + alumnos;
     }
-    
-    
+
 }

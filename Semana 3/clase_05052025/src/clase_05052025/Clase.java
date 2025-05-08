@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 public class Clase {
 
-    private String nombre;
+    private  String nombre;
     private String seccion;
     // Alumnos
     private ArrayList<Alumno> alumnos;

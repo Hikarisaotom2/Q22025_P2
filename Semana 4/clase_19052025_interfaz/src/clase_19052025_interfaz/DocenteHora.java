@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clase_14052025;
+package clase_19052025_interfaz;
 
 /**
  *
  * @author claudiacortes
  */
-public class DocenteHora extends Docente{
+public class DocenteHora extends Docente implements MetodosPolimorficos{
     private double pagoPorClase;
     private int cantidadClases;
 
@@ -18,11 +18,9 @@ public class DocenteHora extends Docente{
         this.cantidadClases = cantidadClases;
     }
     
-//    Sobreescribimos
-    @Override
-     public double calcularSueldo(){
-         System.out.println("Metodo dentro de docente por hora ");
-        return this.cantidadClases * this.pagoPorClase;
+    @Override 
+    public double calcularSueldo (){
+        return 1.5*2;
     }
 
     @Override

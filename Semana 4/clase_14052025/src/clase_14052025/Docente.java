@@ -48,6 +48,7 @@ public class Docente {
     
     //Este es el metodo polimorfico que todos los hijos comparten
     public double calcularSueldo(){
+        System.out.println("Metodo dentro del padre");
         return 0.0;
     }
 

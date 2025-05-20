@@ -17,6 +17,14 @@ public class DocenteInvestigador extends Docente{
         this.sueldoMensual = sueldoMensual;
         this.bono = bono;
     }
+//
+//    @Override
+//    public String toString() {
+//        return "DocenteInvestigador " + this.nombre;
+//    }
+
+
+    
     
     
 }

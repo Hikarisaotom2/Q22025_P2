@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package clase_15052025;
+package clase_19052025_interfaz;
 
 /**
  *
  * @author claudiacortes
  */
-public class DocenteInvestigador extends Docente{
+public class DocenteInvestigador extends Docente implements MetodosPolimorficos{
     private double sueldoMensual;
     private double bono;
 
@@ -16,17 +16,12 @@ public class DocenteInvestigador extends Docente{
         super(nombre, numCel, correo);
         this.sueldoMensual = sueldoMensual;
         this.bono = bono;
-    }
-
-    @Override
-    public String toString() {
-        return "DocenteInvestigador{" + "sueldoMensual=" + sueldoMensual + ", bono=" + bono + '}';
-    }
-
+    }  
+    
     
     @Override 
-    public double  calcularSueldo(){
-        return 3*3;
+    public double calcularSueldo(){
+        return 1*1;
     }
     
 }

@@ -4,6 +4,8 @@
  */
 package clase_14052025;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author claudiacortes
@@ -24,6 +26,8 @@ public class Clase_14052025 {
              1) Realizar la herencia con normalidad 
              2) Identificar y crear  en el PADRE  el metodo en comun pero que es polimorfico 
              3) Respetar y recordar la definicion del metodo polimorfico en el padre  y "sobreescribirlo" en el hijo 
+             4) Los Hijos pueden OPCIONALMENTE sobreescribir el metodo 
+             5) Por regla general, si la clase esta sobreescribiendo un metodo polimorfico, Java va a llamar ese codigo, de lo contrario va a llamar el metodo del padre
         
         2) Polimorfismo por clases abstractas (Si depdende o funciona con herencia):
         3) Polimorfismo por Interfaces (NO depende de la herencia): 
@@ -87,6 +91,37 @@ public class Clase_14052025 {
                     -> 50000 >= 30%
         
         */
+        
+        
+        ArrayList<Docente> docentes = new ArrayList<Docente>();
+        docentes.add(new DocenteHora(5000,4, "Juan", 1234, "juan@gmail.com"));
+        docentes.add(new DocentePlanta(50000, "Pedro", 1234, "juan@gmail.com"));
+        docentes.add(new DocenteInvestigador(50000,4000, "Mario", 1234, "juan@gmail.com"));
+        
+//        imprimirDocentes(docentes);
+        calcularSalarios(docentes);
+        
     }
+    
+    
+    public static void imprimirDocentes(ArrayList<Docente> docentes){
+        for (int i = 0; i < docentes.size(); i++) {
+            System.out.println(i+" )" + docentes.get(i));
+        }  
+    }
+    
+    
+    public static void calcularSalarios(ArrayList<Docente> docentes){
+        for (int i = 0; i < docentes.size(); i++) {
+            
+            Docente d = docentes.get(i);
+            /*
+               -> Al momento de ejecutarse el codigo, cada objeto recuerda  que tipo de clase es  y llama al metodo correcto.
+            */
+            System.out.println(i+" )" + d+ " Sueldo actual" + d.calcularSueldo());
+        }
+    }
+    
+    
     
 }

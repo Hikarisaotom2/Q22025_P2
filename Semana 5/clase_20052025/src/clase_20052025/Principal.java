@@ -4,6 +4,8 @@
  */
 package clase_20052025;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -31,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
         // Antes de ejecutar el metodo NO HAY NINGUN ELEMENTOS EN LA PANTALLA. 
         initComponents(); // -> crear los elemtos visuales en la pantalla. 
         // Despues del metodo ya tenemos los elementos creados en la pantalla. 
+        mostrarElementos(false);
     }
 
     /**
@@ -44,6 +47,13 @@ public class Principal extends javax.swing.JFrame {
 
         btn_mostrarTexto = new javax.swing.JButton();
         btn_ocultarTexto = new javax.swing.JButton();
+        lbl_nombre = new javax.swing.JLabel();
+        lbl_apellido = new javax.swing.JLabel();
+        txt_nombre = new javax.swing.JTextField();
+        txt_apellido = new javax.swing.JTextField();
+        btn_crear = new javax.swing.JButton();
+        lbl_mensaje = new javax.swing.JLabel();
+        btn_limpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,33 +61,148 @@ public class Principal extends javax.swing.JFrame {
         btn_mostrarTexto.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         btn_mostrarTexto.setForeground(new java.awt.Color(204, 255, 204));
         btn_mostrarTexto.setText("Mostrar");
+        btn_mostrarTexto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_mostrarTextoMouseClicked(evt);
+            }
+        });
 
         btn_ocultarTexto.setText("Ocultar");
+        btn_ocultarTexto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_ocultarTextoMouseClicked(evt);
+            }
+        });
+
+        lbl_nombre.setText("Nombre");
+
+        lbl_apellido.setText("Apellido");
+
+        txt_nombre.setBackground(new java.awt.Color(204, 204, 204));
+        txt_nombre.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        txt_nombre.setForeground(new java.awt.Color(255, 255, 255));
+
+        btn_crear.setText("Crear");
+        btn_crear.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_crearMouseClicked(evt);
+            }
+        });
+        btn_crear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearActionPerformed(evt);
+            }
+        });
+
+        lbl_mensaje.setBackground(new java.awt.Color(204, 255, 204));
+        lbl_mensaje.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
+        lbl_mensaje.setOpaque(true);
+
+        btn_limpiar.setText("Limpiar");
+        btn_limpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_limpiarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(btn_mostrarTexto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
-                .addComponent(btn_ocultarTexto)
-                .addGap(131, 131, 131))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbl_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(50, 50, 50)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbl_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(31, 31, 31)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txt_nombre)
+                                .addComponent(txt_apellido, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(139, 139, 139)
+                                .addComponent(btn_crear, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(169, 169, 169)
+                                .addComponent(btn_mostrarTexto)))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_ocultarTexto)
+                            .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_ocultarTexto)
-                    .addComponent(btn_mostrarTexto))
-                .addGap(217, 217, 217))
+                    .addComponent(lbl_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(60, 60, 60)
+                .addComponent(lbl_mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btn_crear, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(btn_limpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_mostrarTexto)
+                    .addComponent(btn_ocultarTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(68, 68, 68))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_crearMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_crearMouseClicked
+            String nombre = txt_nombre.getText();
+            String apellido = txt_apellido.getText();;
+            Persona nuevaPersona = new Persona(nombre,apellido);
+            personas.add(nuevaPersona);
+//            lbl_mensaje.setText("Objeto creado exitosamente! :) ");
+            lbl_mensaje.setText(nuevaPersona.toString());
+            System.out.println("Cantidad de objetos en el arraylist: "+ personas.size());
+            
+        
+    }//GEN-LAST:event_btn_crearMouseClicked
+
+    private void btn_crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_crearActionPerformed
+
+    private void btn_limpiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_limpiarMouseClicked
+        txt_nombre.setText("");
+         txt_apellido.setText("");
+         lbl_mensaje.setText("");
+               
+    }//GEN-LAST:event_btn_limpiarMouseClicked
+
+    private void btn_ocultarTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ocultarTextoMouseClicked
+      mostrarElementos(false);
+    }//GEN-LAST:event_btn_ocultarTextoMouseClicked
+
+    private void btn_mostrarTextoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_mostrarTextoMouseClicked
+        mostrarElementos(true);
+    }//GEN-LAST:event_btn_mostrarTextoMouseClicked
+
+    public void mostrarElementos(boolean mostrar){
+        txt_nombre.setVisible(mostrar);
+       txt_apellido.setVisible(mostrar);
+       lbl_nombre.setVisible(mostrar);
+       lbl_apellido.setVisible(mostrar);
+       lbl_mensaje.setVisible(mostrar);
+       btn_crear.setVisible(mostrar);
+       btn_limpiar.setVisible(mostrar);
+    }
     /**
      * @param args the command line arguments
      */
@@ -112,9 +237,17 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-
+    //Variables
+    ArrayList <Persona> personas = new ArrayList<Persona>();
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_crear;
+    private javax.swing.JButton btn_limpiar;
     private javax.swing.JButton btn_mostrarTexto;
     private javax.swing.JButton btn_ocultarTexto;
+    private javax.swing.JLabel lbl_apellido;
+    private javax.swing.JLabel lbl_mensaje;
+    private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JTextField txt_apellido;
+    private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }

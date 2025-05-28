@@ -33,6 +33,11 @@ public class Principal extends javax.swing.JFrame {
         txt_nombre = new javax.swing.JTextField();
         jp_eliminar = new javax.swing.JPanel();
         lbl_mensaje = new javax.swing.JLabel();
+        jcb_opciones = new javax.swing.JComboBox<>();
+        lbl_item = new javax.swing.JLabel();
+        lbl_pos = new javax.swing.JLabel();
+        lbl_item_display = new javax.swing.JLabel();
+        lbl_pos_display = new javax.swing.JLabel();
         jp_buscar = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -44,6 +49,9 @@ public class Principal extends javax.swing.JFrame {
         btn_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_agregarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_agregarMouseEntered(evt);
             }
         });
 
@@ -79,24 +87,62 @@ public class Principal extends javax.swing.JFrame {
 
         jtp_tabs.addTab("Agregar", jp_agregar);
 
+        jcb_opciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Peras", "Manzanas", "Uvas" }));
+        jcb_opciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcb_opcionesActionPerformed(evt);
+            }
+        });
+
+        lbl_item.setText("Item");
+
+        lbl_pos.setText("Pos: ");
+
         javax.swing.GroupLayout jp_eliminarLayout = new javax.swing.GroupLayout(jp_eliminar);
         jp_eliminar.setLayout(jp_eliminarLayout);
         jp_eliminarLayout.setHorizontalGroup(
             jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_eliminarLayout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(lbl_mensaje)
-                .addContainerGap(445, Short.MAX_VALUE))
+                .addGroup(jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jp_eliminarLayout.createSequentialGroup()
+                        .addGap(262, 262, 262)
+                        .addComponent(lbl_mensaje))
+                    .addGroup(jp_eliminarLayout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jcb_opciones, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jp_eliminarLayout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbl_pos)
+                            .addComponent(lbl_item))
+                        .addGroup(jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jp_eliminarLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(lbl_item_display))
+                            .addGroup(jp_eliminarLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(lbl_pos_display)))))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jp_eliminarLayout.setVerticalGroup(
             jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp_eliminarLayout.createSequentialGroup()
-                .addGap(113, 113, 113)
+                .addContainerGap()
+                .addComponent(jcb_opciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addGroup(jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_item)
+                    .addComponent(lbl_item_display))
+                .addGap(12, 12, 12)
                 .addComponent(lbl_mensaje)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jp_eliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_pos)
+                    .addComponent(lbl_pos_display))
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
-        jtp_tabs.addTab("Eliminar", jp_eliminar);
+        jtp_tabs.addTab("Visualizar", jp_eliminar);
 
         javax.swing.GroupLayout jp_buscarLayout = new javax.swing.GroupLayout(jp_buscar);
         jp_buscar.setLayout(jp_buscarLayout);
@@ -160,9 +206,20 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarMouseClicked
-      txt_nombre.setText("Hola Mundo!");
-      lbl_mensaje.setText("MENSAJE DESDE LA TAB 1");
+        Persona p = new Persona(txt_nombre.getText());
     }//GEN-LAST:event_btn_agregarMouseClicked
+
+    private void btn_agregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_agregarMouseEntered
+
+    private void jcb_opcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcb_opcionesActionPerformed
+
+        int pos = jcb_opciones.getSelectedIndex();
+        lbl_pos_display.setText(pos+"");
+        Object item = jcb_opciones.getSelectedItem();
+        lbl_item_display.setText(item.toString());
+    }//GEN-LAST:event_jcb_opcionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,12 +261,17 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JComboBox<String> jcb_opciones;
     private javax.swing.JPanel jp_agregar;
     private javax.swing.JPanel jp_buscar;
     private javax.swing.JPanel jp_eliminar;
     private javax.swing.JTabbedPane jtp_tabs;
+    private javax.swing.JLabel lbl_item;
+    private javax.swing.JLabel lbl_item_display;
     private javax.swing.JLabel lbl_mensaje;
     private javax.swing.JLabel lbl_nombre;
+    private javax.swing.JLabel lbl_pos;
+    private javax.swing.JLabel lbl_pos_display;
     private javax.swing.JTextField txt_nombre;
     // End of variables declaration//GEN-END:variables
 }

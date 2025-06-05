@@ -6,7 +6,9 @@ package clase_02062025;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.DefaultListModel;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,7 +20,12 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form Principal
      */
     public Principal() {
-        initComponents();
+        initComponents();   
+        
+        DefaultListModel modelo = new DefaultListModel();
+        jl_listaPersonas.setModel(modelo);
+
+
     }
 
     /**
@@ -51,6 +58,19 @@ public class Principal extends javax.swing.JFrame {
         btn_color = new javax.swing.JButton();
         btn_actualizar = new javax.swing.JButton();
         btn_font_family = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btn_color1 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txt_nombre = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jcb_tipoUsuario = new javax.swing.JComboBox<>();
+        btn_agregar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jl_listaPersonas = new javax.swing.JList<>();
+        jLabel8 = new javax.swing.JLabel();
+        lbl_nombre_display = new javax.swing.JLabel();
+        btn_eliminarLista = new javax.swing.JButton();
         jmb_menuPrincipal = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_cargar = new javax.swing.JMenuItem();
@@ -101,7 +121,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_texto)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Texto desde dialog", jPanel2);
@@ -144,12 +164,24 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Color Background");
+
+        btn_color1.setText("seleccionar color");
+        btn_color1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_color1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(lbl_texto_edicion, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -173,8 +205,10 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(btn_actualizar)
                             .addComponent(btn_font_family)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(206, 206, 206)
-                        .addComponent(lbl_texto_edicion, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_color1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(323, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -200,10 +234,104 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(btn_color))
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(btn_color1))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Editor de texto", jPanel1);
+
+        jLabel1.setText("Nombre");
+
+        jLabel7.setText("Tipo de usuario");
+
+        jcb_tipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Docente", "Alumno" }));
+
+        btn_agregar.setText("Agregar");
+        btn_agregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_agregarMouseClicked(evt);
+            }
+        });
+
+        jl_listaPersonas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jl_listaPersonas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_listaPersonasMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jl_listaPersonas);
+
+        jLabel8.setText("Nombre ");
+
+        btn_eliminarLista.setText("Eliminar de a lista");
+        btn_eliminarLista.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_eliminarListaMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7))
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txt_nombre)
+                            .addComponent(jcb_tipoUsuario, 0, 219, Short.MAX_VALUE))
+                        .addGap(58, 58, 58)
+                        .addComponent(btn_agregar)
+                        .addGap(39, 39, 39)
+                        .addComponent(btn_eliminarLista))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_nombre_display)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))))
+                .addContainerGap(31, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jcb_tipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_agregar)
+                            .addComponent(btn_eliminarLista))))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_nombre_display)
+                .addGap(19, 19, 19))
+        );
+
+        jTabbedPane1.addTab("Componentes visuales", jPanel3);
 
         jm_archivo.setText("Archivo");
 
@@ -254,8 +382,8 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -313,6 +441,47 @@ public class Principal extends javax.swing.JFrame {
       lbl_texto_edicion.setFont(nuevaFuente);
     }//GEN-LAST:event_btn_font_familyMouseClicked
 
+    private void btn_color1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_color1MouseClicked
+        Color background = JColorChooser.showDialog(this, "Seleccione un color", Color.red);
+        lbl_texto_edicion.setOpaque(true);
+        lbl_texto_edicion.setBackground(background);
+    }//GEN-LAST:event_btn_color1MouseClicked
+
+    private void btn_agregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_agregarMouseClicked
+        int tipo = jcb_tipoUsuario.getSelectedIndex();
+        Persona nuevaPersona;
+        if(tipo == 0){ // Docente
+           nuevaPersona = new Docente(txt_nombre.getText());
+        }else{ //Alumno
+            nuevaPersona = new Alumno(txt_nombre.getText());
+        }
+        //Agregar el objeto nuevaPersona 
+        DefaultListModel modeloLista = (DefaultListModel)jl_listaPersonas.getModel();
+        modeloLista.addElement(nuevaPersona);
+        
+    }//GEN-LAST:event_btn_agregarMouseClicked
+
+    private void jl_listaPersonasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_listaPersonasMouseClicked
+      int pos = jl_listaPersonas.getSelectedIndex();
+      DefaultListModel modeloLista = (DefaultListModel)jl_listaPersonas.getModel();
+      Object objetoSeleccionado = modeloLista.getElementAt(pos);
+      if(objetoSeleccionado instanceof Docente){
+          Docente docenteSeleccionado = (Docente) objetoSeleccionado;
+          lbl_nombre_display.setText("DOCENTE: "+docenteSeleccionado.getNombre());
+      }else if(objetoSeleccionado instanceof Alumno){
+          Alumno alumnoSeleccionado = (Alumno) objetoSeleccionado;
+          lbl_nombre_display.setText("ALUMNO: "+alumnoSeleccionado.getNombre());
+      }
+    }//GEN-LAST:event_jl_listaPersonasMouseClicked
+
+    private void btn_eliminarListaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarListaMouseClicked
+        int pos = jl_listaPersonas.getSelectedIndex();
+        DefaultListModel modeloLista = (DefaultListModel)jl_listaPersonas.getModel();
+        modeloLista.remove(pos);
+        JOptionPane.showMessageDialog(this,"Elemento eliminado");
+        
+    }//GEN-LAST:event_btn_eliminarListaMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -350,19 +519,30 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_color;
+    private javax.swing.JButton btn_color1;
+    private javax.swing.JButton btn_eliminarLista;
     private javax.swing.JButton btn_font_family;
     private javax.swing.JButton btn_nuevoTexto_dialog;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox<String> jcb_estilo;
+    private javax.swing.JComboBox<String> jcb_tipoUsuario;
     private javax.swing.JDialog jd_pantallaSecundaria;
+    private javax.swing.JList<String> jl_listaPersonas;
     private javax.swing.JMenu jm_archivo;
     private javax.swing.JMenu jm_editar;
     private javax.swing.JMenu jm_opciones;
@@ -372,11 +552,13 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_copiar;
     private javax.swing.JMenuItem jmi_pegar;
     private javax.swing.JPopupMenu.Separator jms_Separador1;
+    private javax.swing.JLabel lbl_nombre_display;
     private javax.swing.JLabel lbl_nuevoTexto_dialog;
     private javax.swing.JLabel lbl_texto;
     private javax.swing.JLabel lbl_texto_edicion;
     private javax.swing.JTextField txt_font;
     private javax.swing.JTextArea txt_mensaje;
+    private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_nuevoTexto_dilog;
     private javax.swing.JTextField txt_size;
     // End of variables declaration//GEN-END:variables

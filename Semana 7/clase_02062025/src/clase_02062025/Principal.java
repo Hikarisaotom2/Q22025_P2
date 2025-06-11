@@ -46,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
         DefaultMutableTreeNode nodoAlumno = new DefaultMutableTreeNode("Alumnos");  
         raiz.add(nodoDocentes);
         raiz.add(nodoAlumno);
+        
         raiz.setUserObject("USUARIOS");
         modeloArbol.reload();
           
@@ -103,6 +104,9 @@ public class Principal extends javax.swing.JFrame {
         btn_eliminar_tabla = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jt_usuarios = new javax.swing.JTree();
+        jLabel11 = new javax.swing.JLabel();
+        lbl_tipo_seleccion_arbol = new javax.swing.JLabel();
+        btn_eliminarArbol = new javax.swing.JButton();
         jmb_menuPrincipal = new javax.swing.JMenuBar();
         jm_archivo = new javax.swing.JMenu();
         jmi_cargar = new javax.swing.JMenuItem();
@@ -144,7 +148,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(lbl_texto)
                 .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 514, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +245,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_color1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(358, Short.MAX_VALUE))
+                .addContainerGap(394, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +342,21 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        jt_usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jt_usuariosMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(jt_usuarios);
+
+        jLabel11.setText("Tipo");
+
+        btn_eliminarArbol.setText("Eliminar del arbol");
+        btn_eliminarArbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_eliminarArbolMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -348,6 +366,39 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(lbl_nombre_display)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addGap(31, 31, 31)
+                                        .addComponent(lbl_fila))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(lbl_columna))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(153, 153, 153)
+                                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(133, 133, 133)
+                                                .addComponent(jLabel11)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(lbl_tipo_seleccion_arbol)))
+                                        .addGap(0, 129, Short.MAX_VALUE)))))
+                        .addGap(70, 70, 70))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -356,36 +407,19 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_nombre)
                             .addComponent(jcb_tipoUsuario, 0, 219, Short.MAX_VALUE))
-                        .addGap(58, 58, 58)
-                        .addComponent(btn_agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btn_eliminarLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_eliminar_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(lbl_nombre_display)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(31, 31, 31)
-                                .addComponent(lbl_fila))
+                                .addComponent(btn_agregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(btn_eliminar_tabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btn_eliminarArbol, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbl_columna))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(153, 153, 153)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 93, Short.MAX_VALUE)))))
-                .addGap(70, 70, 70))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btn_eliminarLista, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(167, 167, 167))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,40 +428,49 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jcb_tipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(btn_eliminarLista)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(btn_agregar))
+                                        .addGap(20, 20, 20)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel1)
+                                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jcb_tipoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btn_eliminarArbol)))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btn_eliminar_tabla)))))
+                                        .addContainerGap()
+                                        .addComponent(btn_eliminarLista)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(15, 15, 15)
+                                                .addComponent(btn_agregar))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(btn_eliminar_tabla)))))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel9)
+                                    .addComponent(lbl_columna)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(lbl_columna)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel10)
+                            .addComponent(lbl_fila))
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(lbl_fila))
-                .addGap(45, 45, 45)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(lbl_tipo_seleccion_arbol))
+                        .addGap(35, 35, 35)))
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(lbl_nombre_display)
@@ -567,6 +610,33 @@ public class Principal extends javax.swing.JFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel)jt_tabla_usuarios.getModel();
         modeloTabla.addRow(new Object[]{nuevaPersona.getNombre(),jcb_tipoUsuario.getSelectedItem(),false});
         
+        //Arbol.
+        DefaultTreeModel modeloArbol = (DefaultTreeModel) jt_usuarios.getModel();
+        DefaultMutableTreeNode raiz = (DefaultMutableTreeNode)modeloArbol.getRoot();
+//        if(tipo == 0){ // agregar a la categoria de docentes
+//            DefaultMutableTreeNode nodoDocentes= (DefaultMutableTreeNode)raiz.getChildAt(0);
+//              DefaultMutableTreeNode nuevoNodo = new DefaultMutableTreeNode(nuevaPersona);  
+//              nodoDocentes.add(nuevoNodo);
+//        }else{ // agregar a la categoria de alumnos 
+//            DefaultMutableTreeNode nodoAlumnos= (DefaultMutableTreeNode)raiz.getChildAt(1);
+//              DefaultMutableTreeNode nuevoNodo = new DefaultMutableTreeNode(nuevaPersona);  
+//              nodoAlumnos.add(nuevoNodo);
+//        }
+      DefaultMutableTreeNode nodo= (DefaultMutableTreeNode)raiz.getChildAt(tipo);
+      DefaultMutableTreeNode nuevoNodo = new DefaultMutableTreeNode(nuevaPersona);  
+      
+      /*
+      DefaultMutableTreeNode
+      hijos: ArraylIST<DefaultMutableTreeNode> 
+      UseroBJECT: Object
+      
+      DefaultMutableTreeNode(Object userObject ){
+       this.useroBJECT = userObject
+      }
+      */
+      nodo.add(nuevoNodo);
+      modeloArbol.reload();
+        
         
     }//GEN-LAST:event_btn_agregarMouseClicked
 
@@ -614,6 +684,45 @@ public class Principal extends javax.swing.JFrame {
       modelo.removeRow(fila);
     }//GEN-LAST:event_btn_eliminar_tablaMouseClicked
 
+    private void jt_usuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jt_usuariosMouseClicked
+//    lbl_tipo_seleccion_arbol
+        Object objetoSeleccionado = jt_usuarios.getSelectionPath().getLastPathComponent();
+//                                   [RAIZ.....NODO, NODOSELECCIONADO].get(size-1)       
+        DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode)objetoSeleccionado;
+        
+        if(nodoSeleccionado.isRoot()){
+            lbl_tipo_seleccion_arbol.setText("Raiz");
+        }else if(nodoSeleccionado.isLeaf()){
+            lbl_tipo_seleccion_arbol.setText("Hoja");
+        }else{
+                lbl_tipo_seleccion_arbol.setText("Nodo");
+        }
+        
+        Object informacion = nodoSeleccionado.getUserObject();
+        
+        if(informacion instanceof Docente){
+          Docente docenteSeleccionado = (Docente) informacion;
+          lbl_nombre_display.setText(docenteSeleccionado.getNombre());
+        }else if(informacion instanceof Alumno){
+            Alumno alumnoSeleccionado = (Alumno) informacion;
+            lbl_nombre_display.setText(alumnoSeleccionado.getNombre());
+        }
+    }//GEN-LAST:event_jt_usuariosMouseClicked
+
+    private void btn_eliminarArbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarArbolMouseClicked
+         Object objetoSeleccionado = jt_usuarios.getSelectionPath().getLastPathComponent();
+        DefaultMutableTreeNode nodoSeleccionado = (DefaultMutableTreeNode)objetoSeleccionado;
+        DefaultTreeModel modeloArbol =  (DefaultTreeModel) jt_usuarios.getModel();
+        if(nodoSeleccionado.isRoot()){
+            JOptionPane.showMessageDialog(this, "No se puede eliminar la raiz");
+        }else{
+            DefaultMutableTreeNode padre = (DefaultMutableTreeNode)nodoSeleccionado.getParent();
+            padre.remove(nodoSeleccionado);
+            modeloArbol.reload();
+             JOptionPane.showMessageDialog(this, "Nodo eliminado");
+        }
+    }//GEN-LAST:event_btn_eliminarArbolMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -654,12 +763,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_color;
     private javax.swing.JButton btn_color1;
+    private javax.swing.JButton btn_eliminarArbol;
     private javax.swing.JButton btn_eliminarLista;
     private javax.swing.JButton btn_eliminar_tabla;
     private javax.swing.JButton btn_font_family;
     private javax.swing.JButton btn_nuevoTexto_dialog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -697,6 +808,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_nuevoTexto_dialog;
     private javax.swing.JLabel lbl_texto;
     private javax.swing.JLabel lbl_texto_edicion;
+    private javax.swing.JLabel lbl_tipo_seleccion_arbol;
     private javax.swing.JTextField txt_font;
     private javax.swing.JTextArea txt_mensaje;
     private javax.swing.JTextField txt_nombre;

@@ -6,6 +6,7 @@ package clase_23062025;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        
+
         jpb_player.setMinimum(0);
         jpb_player.setMaximum(100);
     }
@@ -41,8 +42,6 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jpb_player.setValue(0);
-
         btn_play.setText("Play");
         btn_play.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -51,8 +50,18 @@ public class Principal extends javax.swing.JFrame {
         });
 
         btn_pausa.setText("Pausa");
+        btn_pausa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_pausaMouseClicked(evt);
+            }
+        });
 
         btn_stop.setText("Detener / Stop");
+        btn_stop.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_stopMouseClicked(evt);
+            }
+        });
 
         btn_avanzar.setText("Avanzar");
         btn_avanzar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +98,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(btn_avanzar)
                         .addGap(64, 64, 64)
                         .addComponent(btn_retroceder)))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -105,7 +114,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_avanzar)
                     .addComponent(btn_retroceder))
-                .addContainerGap(152, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
@@ -115,37 +124,51 @@ public class Principal extends javax.swing.JFrame {
         int max = jpb_player.getMaximum();
         int val = jpb_player.getValue();
         //random 
-        if(val+1 <=max){
-            jpb_player.setValue(val+1);
-        }else{
+        if (val + 1 <= max) {
+            jpb_player.setValue(val + 1);
+        } else {
             System.out.println("No se puede avanzar");
         }
-        
+
     }//GEN-LAST:event_btn_avanzarMouseClicked
 
     private void btn_retrocederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_retrocederMouseClicked
-       int min = jpb_player.getMinimum();
+        int min = jpb_player.getMinimum();
         int val = jpb_player.getValue();
-        if(val-1 >= min){
-            jpb_player.setValue(val-1);
-        }else{
+        if (val - 1 >= min) {
+            jpb_player.setValue(val - 1);
+        } else {
             System.out.println("No se puede retroceder");
         }
     }//GEN-LAST:event_btn_retrocederMouseClicked
 
     private void btn_playMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_playMouseClicked
         /**
-         IMPORTANTE: Los hilos necesitan que se les indique cuando comenzar a trabajar y cuando detenerse. 
-         **/
+         * IMPORTANTE: Los hilos necesitan que se les indique cuando comenzar a
+         * trabajar y cuando detenerse. 
+         *
+         */
+
+        /**
+         * 1) i--; 2) while
+         *
+         */
+        /* 1
         Thread play = new Thread(() -> {
             int min = jpb_player.getMinimum();
             int max = jpb_player.getMaximum();
             for (int i = min; i < max; i++) {
                 try {
-                    System.out.println(i);
+                    if(pausa){
+                        System.out.println(i+ "PAUSA");
+                        i--;
+                    }else{
+                         System.out.println(i);
                     jpb_player.setValue(i);
                     //SIEMPRE RECORDAR QUE EL HILO ASUME QUE LE PASAMOS VALORES EN MILISEGNDO
                     Thread.sleep(200);
+                    }
+                   
                 } catch (InterruptedException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -153,10 +176,64 @@ public class Principal extends javax.swing.JFrame {
 
         });
         
+         */
+        Thread play = new Thread(() -> {
+            int min = jpb_player.getMinimum();
+            int max = jpb_player.getMaximum();
+            int i = min;
+            while (i <= max) {
+                try {
+                    if (stop) {
+                        pausa = false;
+                        stop = false;
+                        SwingUtilities.invokeLater(() -> {
+                            jpb_player.setValue(0);
+                        });
+                        break;
+                    }
+                    if (pausa) {
+                        System.out.println(i + "PAUSA");
+                    } else {
+                        int progress = i;
+
+                        //EDT: Hilo especial que tiene llava que se encarga de actualizar la GUI 
+                        // Si nosostros vamos a modificar algo del GUI dentro de un hilo, deberiamos hacrlo con el EDT. 
+                        SwingUtilities.invokeLater(() -> {
+                            System.out.println(progress);
+                            jpb_player.setValue(progress);
+
+                        });
+                        //SIEMPRE RECORDAR QUE EL HILO ASUME QUE LE PASAMOS VALORES EN MILISEGNDO
+                        Thread.sleep(200);
+                        i++;
+                    }
+
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+
+        });
+
         // IMPORTANTE: si no inciamos el hilo este no comenzarà a trabajar, para inciar un hilo sellama al metodo start
         play.start();
-        
+
     }//GEN-LAST:event_btn_playMouseClicked
+
+    private void btn_pausaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_pausaMouseClicked
+        if (pausa) {
+            btn_pausa.setText("Pausa");
+            pausa = false;
+        } else {
+            btn_pausa.setText("Reanudar");
+            pausa = true;
+        }
+//        pausa = !pausa;
+    }//GEN-LAST:event_btn_pausaMouseClicked
+
+    private void btn_stopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_stopMouseClicked
+        stop = true;
+    }//GEN-LAST:event_btn_stopMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,6 +269,9 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
+
+    private boolean pausa = false;
+    private boolean stop = false;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_avanzar;

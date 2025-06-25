@@ -45,7 +45,7 @@
                       <Component id="btn_retroceder" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="209" max="32767" attributes="0"/>
+              <EmptySpace pref="85" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,16 +65,13 @@
                   <Component id="btn_avanzar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btn_retroceder" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="152" max="32767" attributes="0"/>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JProgressBar" name="jpb_player">
-      <Properties>
-        <Property name="value" type="int" value="0"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btn_play">
       <Properties>
@@ -88,11 +85,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Pausa"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_pausaMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_stop">
       <Properties>
         <Property name="text" type="java.lang.String" value="Detener / Stop"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_stopMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btn_avanzar">
       <Properties>
